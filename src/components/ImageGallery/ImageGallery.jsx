@@ -68,13 +68,14 @@ class ImageGallery extends Component {
   }
 
   getActiveImg = id => {
-    this.state.images.find(image => {
-      if (image.id === id) {
-        this.setState({
-          activeImgUrl: image.largeImageURL,
-        });
-      }
-    });
+    const activeImg = this.state.images.find(
+      image => image.id === id
+    );
+    if (activeImg.id === id) {
+      this.setState({
+        activeImgUrl: activeImg.largeImageURL,
+      });
+    }
   };
   toggleModal = () => {
     this.setState({ modalActive: !this.state.modalActive });

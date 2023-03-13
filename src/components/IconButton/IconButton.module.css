@@ -23,7 +23,7 @@
   height: 2em;
   stroke-width: 0;
   stroke: currentColor;
-  fill: black;
+  fill: white;
 }
 .Iconbutton svg :hover,
 .Iconbutton svg :focus {
