@@ -13,9 +13,6 @@
 
 .Modal {
   position: relative;
-  /* max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px); */
-  background-color: aqua;
-  width: calc(50vw - 48px);
-  height: calc(50vh - 24px);
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 24px);
 }

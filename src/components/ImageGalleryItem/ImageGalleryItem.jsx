@@ -1,13 +1,22 @@
 import css from './ImageGalleryItem.module.css';
-const ImageGalleryItem = () => {
+const ImageGalleryItem = ({
+  id,
+  webformatURL,
+  tags,
+  toggleModal,
+  getActiveImg,
+}) => {
   return (
     <li className={css.ImageGalleryItem}>
       <img
+        onClick={() => {
+          getActiveImg(id);
+          toggleModal();
+        }}
         className={css.ImageGalleryItemImage}
-        src=""
-        alt=""
+        src={webformatURL}
+        alt={tags}
       />
-      це зображення
     </li>
   );
 };

@@ -1,29 +1,27 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
-console.log(css);
+
 class Searchbar extends Component {
   state = {
     inputValue: '',
   };
 
+  // оновлюєм стейт коли вводимо значення в інпут
   handelInputChange = ({ currentTarget }) => {
     this.setState({
       inputValue: currentTarget.value,
     });
   };
+  // по сабміту форми відправляєм значеня в компонент App
   handelFormSubmit = event => {
     event.preventDefault();
     if (this.state.inputValue === '') {
       return alert('emptySearch');
     }
 
-    this.props.GetValueFromInput(this.state.inputValue);
-    this.setState({
-      inputValue: '',
-    });
+    this.props.getFromData(this.state.inputValue);
   };
   render() {
-    console.log(this.props.GetValueFromInput);
     return (
       <header className={css.Searchbar}>
         <form
