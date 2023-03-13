@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { toast } from 'react-toastify';
 
 import css from './ImageGallery.module.css';
 
@@ -6,6 +7,7 @@ import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
 import Loading from '../loading/Loading';
+import ErrorView from '../Error/ErrorView';
 
 const KEY = '32771968-7fd567c901afb84ab6320145c';
 class ImageGallery extends Component {
@@ -25,13 +27,27 @@ class ImageGallery extends Component {
     ) {
       this.setState({
         status: 'pending',
+        page: 1,
+        images: [],
       });
       fetch(
-        ` https://pixabay.com/api/?q=${this.props.searchValue}&page=${this.state.page}&key=${KEY}&image_type=photo&orientation=horizontal&per_page=12`
+        ` https://pixabay.com/api/?q=${this.props.searchValue}&key=${KEY}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
       )
-        .then(resp => resp.json())
+        .then(resp => {
+          console.log(resp.status);
+          if (resp.status !== 200) {
+            return Promise.reject(
+              new Error(`something went wrong :(`)
+            );
+          }
+
+          return resp.json();
+        })
         .then(imagesData => {
           if (imagesData.hits.length === 0) {
+            toast.error("We didn't find any images", {
+              theme: 'dark',
+            });
             return Promise.reject(
               new Error(`images not found `)
             );
@@ -71,14 +87,16 @@ class ImageGallery extends Component {
   };
   render() {
     if (this.state.status === 'rejected') {
-      return <p>{`we are sorry  try again`}</p>;
+      return (
+        <ErrorView errorText={this.state.error.message} />
+      );
     }
     if (this.state.status === 'pending') {
       return <Loading />;
     }
     if (this.state.status === 'resolved') {
       return (
-        <div>
+        <div className={css.GalleryWrapper}>
           <ul className={css.ImageGallery}>
             {this.state.images.map(
               ({

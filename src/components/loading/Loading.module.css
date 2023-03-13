@@ -1,7 +1,9 @@
 .ldsSpinner {
-  color: official;
   display: inline-block;
-  position: relative;
+  position: absolute;
+
+  left: 50%;
+
   width: 80px;
   height: 80px;
 }
@@ -13,7 +15,7 @@
   content: ' ';
   display: block;
   position: absolute;
-  top: 3px;
+  top: 50%;
   left: 37px;
   width: 6px;
   height: 18px;

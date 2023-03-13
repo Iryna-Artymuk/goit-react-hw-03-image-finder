@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import { toast } from 'react-toastify';
+
 import css from './Searchbar.module.css';
 
 class Searchbar extends Component {
@@ -16,10 +18,14 @@ class Searchbar extends Component {
   handelFormSubmit = event => {
     event.preventDefault();
     if (this.state.inputValue === '') {
-      return alert('emptySearch');
+      return toast.error('empty value type something', {
+        theme: 'dark',
+      });
     }
 
     this.props.getFromData(this.state.inputValue);
+
+    this.setState({ inputValue: '' });
   };
   render() {
     return (
