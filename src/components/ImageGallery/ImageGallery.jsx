@@ -5,6 +5,8 @@ import css from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
 import Button from '../Button/Button';
 import Modal from '../Modal/Modal';
+import Loading from '../loading/Loading';
+
 const KEY = '32771968-7fd567c901afb84ab6320145c';
 class ImageGallery extends Component {
   state = {
@@ -29,6 +31,11 @@ class ImageGallery extends Component {
       )
         .then(resp => resp.json())
         .then(imagesData => {
+          if (imagesData.hits.length === 0) {
+            return Promise.reject(
+              new Error(`images not found `)
+            );
+          }
           this.setState({
             images: [
               ...this.state.images,
@@ -47,7 +54,6 @@ class ImageGallery extends Component {
   getActiveImg = id => {
     this.state.images.find(image => {
       if (image.id === id) {
-        console.log(`found img ${image.largeImageURL}`);
         this.setState({
           activeImgUrl: image.largeImageURL,
         });
@@ -65,23 +71,14 @@ class ImageGallery extends Component {
   };
   render() {
     if (this.state.status === 'rejected') {
-      return (
-        <p>we are sorry some error happend try again</p>
-      );
+      return <p>{`we are sorry  try again`}</p>;
     }
     if (this.state.status === 'pending') {
-      return <p>Please wait we are lodding</p>;
+      return <Loading />;
     }
     if (this.state.status === 'resolved') {
       return (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 30,
-            alignItems: 'center',
-          }}
-        >
+        <div>
           <ul className={css.ImageGallery}>
             {this.state.images.map(
               ({
@@ -95,7 +92,6 @@ class ImageGallery extends Component {
                   getActiveImg={this.getActiveImg}
                   toggleModal={this.toggleModal}
                   webformatURL={webformatURL}
-                  largeImageURL={largeImageURL}
                   tags={tags}
                   key={id}
                 />
@@ -105,8 +101,7 @@ class ImageGallery extends Component {
           <Button onClick={this.loadMore}>Load more</Button>
           {this.state.modalActive && (
             <Modal toggleModal={this.toggleModal}>
-              <img src={this.state.activeImgUrl} alt="" />{' '}
-              тут буде картинка
+              <img src={this.state.activeImgUrl} alt="" />
             </Modal>
           )}
         </div>
