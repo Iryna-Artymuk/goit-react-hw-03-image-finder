@@ -20,15 +20,19 @@ class ImageGallery extends Component {
     error: null,
   };
 
-  componentDidUpdate(prevProps, PrevState) {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.searchValue !== this.props.searchValue) {
+      this.setState({
+        images: [],
+      });
+    }
     if (
       prevProps.searchValue !== this.props.searchValue ||
-      PrevState.page !== this.state.page
+      prevState.page !== this.state.page
     ) {
       this.setState({
         status: 'pending',
         page: 1,
-        images: [],
       });
       fetch(
         ` https://pixabay.com/api/?q=${this.props.searchValue}&key=${KEY}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
@@ -82,9 +86,9 @@ class ImageGallery extends Component {
   };
 
   loadMore = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
+    this.setState({
+      page: this.state.page + 1,
+    });
   };
   render() {
     if (this.state.status === 'rejected') {
