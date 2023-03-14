@@ -37,7 +37,6 @@ class Modal extends Component {
           <IconButton
             onClick={this.props.toggleModal}
             aria-label="close"
-            type="modal"
           >
             <AiOutlineClose />
           </IconButton>
