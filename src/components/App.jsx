@@ -14,6 +14,7 @@ const KEY = '32771968-7fd567c901afb84ab6320145c';
 
 class App extends Component {
   state = {
+    searchValue: '',
     modalActive: false,
     images: [],
     page: 1,
@@ -112,7 +113,7 @@ class App extends Component {
             flexDirection: 'column',
             display: 'flex',
             alignItems: ' center',
-            gap: 20,
+            gap: 30,
             padding: 20,
           }}
         >

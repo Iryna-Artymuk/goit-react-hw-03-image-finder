@@ -2,7 +2,6 @@ import css from './ImageGallery.module.css';
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
- 
 
 export default function PaginatedItems(props) {
   const { data } = props;
@@ -46,21 +45,21 @@ export default function PaginatedItems(props) {
         ))}
       </ul>
       <ReactPaginate
-        nextLabel="next >"
+        nextLabel=">"
         onPageChange={handlePageClick}
         pageRangeDisplayed={3}
         marginPagesDisplayed={2}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel="<"
         pageClassName={css.pageItem}
         pageLinkClassName={css.pageLink}
-        previousClassName={css.pageItem}
-        previousLinkClassName={css.pageLink}
-        nextClassName={css.pageItem}
-        nextLinkClassName={css.pageLink}
+        previousClassName
+        previousLinkClassName
+        nextClassName
+        nextLinkClassName
         breakLabel="..."
-        breakClassName={css.pageItem}
-        breakLinkClassName={css.pageItem}
+        breakClassName
+        breakLinkClassNam
         containerClassName={css.pagination}
         activeClassName={css.active}
         renderOnZeroPageCount={null}
