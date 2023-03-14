@@ -102,7 +102,7 @@ class App extends Component {
       <div>
         <ToastContainer
           autoClose={2000}
-          hideProgressBar={true}
+          hideProgressBar={false}
         />
         <Searchbar handelSubmit={this.handelSubmit} />
         {this.state.loading && <Loading />}
