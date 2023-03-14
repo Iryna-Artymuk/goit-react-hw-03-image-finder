@@ -3,8 +3,8 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from './Searchbar/Searchbar';
-// import ImageGallery from './ImageGallery/ImageGallery';
-import PaginatedItems from './ImageGallery copy/ImageGallery';
+
+import PaginatedItems from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import Loading from './loading/Loading';
@@ -105,11 +105,7 @@ class App extends Component {
         />
         <Searchbar handelSubmit={this.handelSubmit} />
         {this.state.loading && <Loading />}
-        {/* <ImageGallery
-          data={this.state.images}
-          toggleModal={this.toggleModal}
-          getActiveImg={this.getActiveImg}
-        /> */}
+
         <div
           style={{
             justifyContent: ' center',
