@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { toast } from 'react-toastify';
 
 import css from './Searchbar.module.css';
-
+import Button from '../Button/Button';
 class Searchbar extends Component {
   state = {
     inputValue: '',
@@ -43,12 +43,9 @@ class Searchbar extends Component {
             autoFocus
             placeholder="Search images and photos"
           />
-          <button
-            type="submit"
-            className={css.SearchFormButton}
-          >
-            <span className={css.Label}>Search</span>
-          </button>
+          <Button type="submit" SearchFormButton>
+            <span className={css.Lable}>Search</span>
+          </Button>
         </form>
       </header>
     );

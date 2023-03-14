@@ -98,14 +98,7 @@ class App extends Component {
 
   render() {
     return (
-      <div
-        style={{
-          justifyContent: ' center',
-          flexDirection: 'column',
-          display: 'flex',
-          alignItems: ' center',
-        }}
-      >
+      <div>
         <ToastContainer
           autoClose={2000}
           hideProgressBar={true}
@@ -117,14 +110,32 @@ class App extends Component {
           toggleModal={this.toggleModal}
           getActiveImg={this.getActiveImg}
         /> */}
-        <PaginatedItems
-          data={this.state.images}
-          toggleModal={this.toggleModal}
-          getActiveImg={this.getActiveImg}
-        />
-        {this.state.images.length > 0 && (
-          <Button onClick={this.loadMore}>Load more</Button>
-        )}
+        <div
+          style={{
+            justifyContent: ' center',
+            flexDirection: 'column',
+            display: 'flex',
+            alignItems: ' center',
+            gap: 20,
+            padding: 20,
+          }}
+        >
+          <PaginatedItems
+            data={this.state.images}
+            toggleModal={this.toggleModal}
+            getActiveImg={this.getActiveImg}
+          />
+          {this.state.images.length > 0 && (
+            <Button
+              type="button"
+              LoadMore
+              onClick={this.loadMore}
+            >
+              Load more
+            </Button>
+          )}
+        </div>
+
         {this.state.error && (
           <ErrorView errorText={this.state.error} />
         )}

@@ -1,9 +1,20 @@
 import css from './Button.module.css';
-const Button = ({ children, onClick }) => {
+import clsx from 'clsx';
+const Button = ({
+  SearchFormButton,
+  LoadMore,
+  children,
+  onClick,
+  type,
+}) => {
+  const ButtonClasses = clsx(css.Button, {
+    [css.LoadMore]: LoadMore,
+    [css.SearchFormButton]: SearchFormButton,
+  });
   return (
     <button
-      type="button"
-      className={css.Button}
+      type={type}
+      className={ButtonClasses}
       onClick={onClick}
     >
       {children}

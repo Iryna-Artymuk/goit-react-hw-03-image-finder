@@ -35,6 +35,11 @@ export default function PaginatedItems(props) {
       (event.selected * itemsPerPage) % data.length;
 
     setItemOffset(newOffset);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -58,15 +63,15 @@ export default function PaginatedItems(props) {
         marginPagesDisplayed={2}
         pageCount={pageCount}
         previousLabel="< previous"
-        pageClassName="page-item"
+        pageClassName={css.pageItem}
         pageLinkClassName={css.pageLink}
-        previousClassName="page-item"
-        previousLinkClassName="page-link"
-        nextClassName="page-item"
-        nextLinkClassName="page-link"
+        previousClassName={css.pageItem}
+        previousLinkClassName={css.pageLink}
+        nextClassName={css.pageItem}
+        nextLinkClassName={css.pageLink}
         breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName="page-link"
+        breakClassName={css.pageItem}
+        breakLinkClassName={css.pageItem}
         containerClassName={css.pagination}
         activeClassName={css.active}
         renderOnZeroPageCount={null}
