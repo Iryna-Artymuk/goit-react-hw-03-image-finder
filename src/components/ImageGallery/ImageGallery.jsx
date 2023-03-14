@@ -2,18 +2,7 @@ import css from './ImageGallery.module.css';
 import ReactPaginate from 'react-paginate';
 import { useEffect, useState } from 'react';
 import ImageGalleryItem from '../ImageGalleryItem/ImageGalleryItem';
-// function Items({ currentItems }) {
-//   return (
-//     <div className="items">
-//       {currentItems &&
-//         currentItems.map(item => (
-//           <div>
-//             <h3>Item #{item}</h3>
-//           </div>
-//         ))}
-//     </div>
-//   );
-// }
+ 
 
 export default function PaginatedItems(props) {
   const { data } = props;
