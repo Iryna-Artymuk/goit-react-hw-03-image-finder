@@ -3,8 +3,8 @@ import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-
+// import ImageGallery from './ImageGallery/ImageGallery';
+import PaginatedItems from './ImageGallery copy/ImageGallery';
 import Button from './Button/Button';
 import Modal from './Modal/Modal';
 import Loading from './loading/Loading';
@@ -30,7 +30,7 @@ class App extends Component {
         loading: true,
       });
       fetch(
-        ` https://pixabay.com/api/?q=${this.state.searchValue}&key=${KEY}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=12`
+        ` https://pixabay.com/api/?q=${this.state.searchValue}&key=${KEY}&page=${this.state.page}&image_type=photo&orientation=horizontal&per_page=50`
       )
         .then(resp => {
           console.log(resp.status);
@@ -98,15 +98,26 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          justifyContent: ' center',
+          flexDirection: 'column',
+          display: 'flex',
+          alignItems: ' center',
+        }}
+      >
         <ToastContainer
           autoClose={2000}
           hideProgressBar={true}
         />
         <Searchbar handelSubmit={this.handelSubmit} />
         {this.state.loading && <Loading />}
-
-        <ImageGallery
+        {/* <ImageGallery
+          data={this.state.images}
+          toggleModal={this.toggleModal}
+          getActiveImg={this.getActiveImg}
+        /> */}
+        <PaginatedItems
           data={this.state.images}
           toggleModal={this.toggleModal}
           getActiveImg={this.getActiveImg}
@@ -117,7 +128,6 @@ class App extends Component {
         {this.state.error && (
           <ErrorView errorText={this.state.error} />
         )}
-
         {this.state.modalActive && (
           <Modal toggleModal={this.toggleModal}>
             <img src={this.state.activeImgUrl} alt="" />

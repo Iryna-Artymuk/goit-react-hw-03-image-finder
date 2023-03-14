@@ -1,0 +1,54 @@
+.ImageGallery {
+  display: grid;
+  max-width: calc(100vw - 48px);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(320px, 1fr)
+  );
+  grid-gap: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: wheat;
+}
+.GalleryWrapper {
+  padding: 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  background: wheat;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  margin-top: 5rem;
+  font-size: 1.2rem;
+  gap: 5px;
+}
+
+.pagination .pageLink {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+.pagination .pageLink:hover {
+  background-color: pink;
+  color: white;
+}
+
+.pagination .active {
+  background-color: pink;
+}
