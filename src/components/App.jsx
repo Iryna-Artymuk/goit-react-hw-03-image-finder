@@ -63,7 +63,9 @@ class App extends Component {
         .catch(Error =>
           this.setState({ error: Error.message })
         )
-        .finally(() => this.setState({ loading: false }));
+        .finally(() =>
+          this.setState({ searchValue: '', loading: false })
+        );
     }
   }
   //
